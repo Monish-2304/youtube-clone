@@ -1,14 +1,15 @@
 import React from 'react'
 import ButtonList from './ButtonList'
-import VideoCard from './VideoCard'
+import VideoContainer from './VideoContainer'
 
-const MainContainer = () => {
+const MainContainer = ({videos}) => {
+
   return (
-    <div>
-      <ButtonList/>
-      <VideoCard/>
+    <div className="flex flex-col justify-start relative">
+    <ButtonList/>
+    <VideoContainer mvideos={videos}/>
     </div>
   )
 }
 
-export default MainContainer
+export default MainContainer;
