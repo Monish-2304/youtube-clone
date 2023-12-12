@@ -41,7 +41,7 @@ const Sidebar = ({handleCategoryClick}) => {
     }
   ];
   return (
-    <div className="p-3 md:h-[40vh] lg:h-[70vh] xl:h-[85vh] w-48 border border-2 overflow-y-hidden sm:block mt-12 hover:overflow-y-auto">
+    <div className=" p-3 md:h-[40vh] lg:h-[70vh] xl:h-[85vh] w-48 border border-2 overflow-y-hidden sm:block mt-12 hover:overflow-y-auto">
     {menuItems.map((section, index) => (
       <div key={index}>
         <h1 className="font-bold pt-2">{section.title}</h1>
