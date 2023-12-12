@@ -46,7 +46,7 @@ const ButtonList = () => {
   };
   return (
 
-<div className={`flex max-w-[23rem] xs:max-w-xs sm:max-w-screen-2xl md:max-w-3xl lg:max-w-3xl ${isMenuOpen?'md:max-w-screen-md xl:max-w-screen-lg':'md:max-w-screen-3xl xl:max-w-screen-xl'}  mt-14`}>
+<div className={`flex max-w-[23rem] xs:max-w-xs sm:max-w-screen-2xl md:max-w-3xl lg:max-w-3xl ${isMenuOpen?'md:max-w-xl  lg:max-w-3xl xl:max-w-5xl':'md:max-w-screen-3xl xl:max-w-screen-xl'}  mt-14`}>
       {/*left arrow button*/}
       <button className={`px-4 py-0.5 my-3 bg-transparent rounded-lg ${showLeftButton ? 'hover:bg-gray-300' : 'hidden'}`} 
        onClick={scrollLeft}>&lt;</button>

@@ -1,9 +1,12 @@
 import React ,{useState}from 'react'
 import Sidebar from './Sidebar'
 import MainContainer from './MainContainer'
-import { fetchVideosByCategory } from '../utils/constants'
+import { fetchVideosByCategory } from '../utils/constants' 
+import WatchPage from './WatchPage'
+import {  Routes,Route,useNavigate } from 'react-router-dom'
 const Body = () => {
   const [videos, setVideos] = useState([]);
+  const navigate = useNavigate();
 
   const handleCategoryClick = async (category) => {
     try {
@@ -15,6 +18,7 @@ const Body = () => {
 
       const json = await data.json();
       setVideos(json.items);
+      navigate("/",{ replace: true });
     } catch (error) {
       console.error(`Error fetching ${category} videos:`, error);
     }
@@ -22,11 +26,16 @@ const Body = () => {
 
   return (
     <div className="flex">
-     
-      <div className="hidden md:mr-6 lg:block"> <Sidebar handleCategoryClick={handleCategoryClick}/>
+     <div className="hidden md:mr-6 md:block"> <Sidebar handleCategoryClick={handleCategoryClick}/>
       </div>
-  
-      <MainContainer videos={videos}/>
+      
+      
+      <Routes>
+        <Route path="/" element={<MainContainer videos={videos} />} />
+        <Route path="/watch" replace="true" element={<WatchPage />} />
+      </Routes>
+   
+     
     </div>
   )
 }

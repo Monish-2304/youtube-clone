@@ -1,11 +1,15 @@
 
 import React, { useState } from 'react'
 import { useEffect } from 'react';
-import { YOUTUBE_VIDEOS_API,MUSIC_CATEGORY_API } from '../utils/constants'
+import { YOUTUBE_VIDEOS_API } from '../utils/constants'
 import VideoCard from './VideoCard';
+import { useSelector } from 'react-redux';
 
 const VideoContainer = ({mvideos}) => {
+  let isMenuOpen=useSelector((store)=>store.app.isMenuOpen);
   const [videos,setVideos]=useState([]);
+
+
   useEffect(()=>{
     if(mvideos.length>0){
       setVideos(mvideos);
@@ -28,12 +32,14 @@ const VideoContainer = ({mvideos}) => {
     }
   };
   
+  
 
  
   return (
-    <div className="sm:flex sm:flex-col md:justify-center xl:justify-start md:flex md:flex-row flex-wrap overflow-hidden">
-      {videos.map(video=><VideoCard key={video.id} info={video}/>)}
-    </div>
+    <div className={`sm:flex sm:flex-col md:flex md:flex-row md:justify-start flex-wrap overflow-hidden lg:max-w-4xl ${isMenuOpen?'md:max-w-xl lg:max-w-6xl':'md:max-w-3xl lg:max-w-screen-2xl'}`}>
+     {videos.map(video=>
+     <VideoCard key={video.id} info={video}/>)}
+    </div> 
   )
 };
 

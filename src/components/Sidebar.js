@@ -6,16 +6,13 @@ const Sidebar = ({handleCategoryClick}) => {
   const isMenuOpen=useSelector((store)=>store.app.isMenuOpen);
     if(!isMenuOpen) return null;
     const handleExploreClick = (category,item) => {
-      if(category.title=="Home"||category.title=="Explore"){
+      if(category.title==="Home"||category.title==="Explore"){
       handleCategoryClick(item);
       }
       setSelectedItem(item);
     };
     
-   const navClick=(category)=>{
-    setSelectedItem(category);
-   }
-   
+ 
   const menuItems = [
     {
       title: 'Home',

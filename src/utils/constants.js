@@ -2,12 +2,12 @@ export const YOUTUBE_VIDEOS_API =
   "https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&chart=mostPopular&maxResults=50&regionCode=IN&key=" +
   process.env.REACT_APP_GOOGLE_API_KEY;
 
- // 'https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&chart=mostPopular&maxResults=50&regionCode=IN&videoCategoryId=1&key=' 
- 
-// constants.js
+export const YOUTUBE_SEARCH_API =
+  "https://corsproxy.io/?http://suggestqueries.google.com/complete/search?client=firefox&ds=yt&q=";
 
-const BASE_API_URL = "https://youtube.googleapis.com/youtube/v3/videos?";
-//&part=snippet&maxResults=25&regionCode=in&topicId=trending&type=video&videoCategoryId=1&key=
+export const BASE_API_URL = "https://youtube.googleapis.com/youtube/v3/videos?";
+
+
 export const fetchVideosByCategory = async (category) => {
   try {
     let categoryParams = "";
@@ -36,7 +36,7 @@ export const fetchVideosByCategory = async (category) => {
       case "Gaming":
         categoryParams =
           "part=snippet%2CcontentDetails%2Cstatistics&chart=mostPopular&maxResults=50&regionCode=IN&videoCategoryId=20&key=";
-          break;
+        break;
       case "Entertainment":
         categoryParams =
           "part=snippet%2CcontentDetails%2Cstatistics&chart=mostPopular&maxResults=50&regionCode=IN&videoCategoryId=24&key=";
@@ -45,18 +45,22 @@ export const fetchVideosByCategory = async (category) => {
         categoryParams =
           "part=snippet%2CcontentDetails%2Cstatistics&chart=mostPopular&maxResults=50&regionCode=IN&videoCategoryId=42&key=";
         break;
-        case "Sports":
-          categoryParams = 'part=snippet%2CcontentDetails%2Cstatistics&chart=mostPopular&maxResults=50&regionCode=IN&videoCategoryId=17&key=';
-          break;
-          case 'Learning':
-        categoryParams = 'part=snippet%2CcontentDetails%2Cstatistics&chart=mostPopular&maxResults=50&regionCode=IN&videoCategoryId=28&key=';
+      case "Sports":
+        categoryParams =
+          "part=snippet%2CcontentDetails%2Cstatistics&chart=mostPopular&maxResults=50&regionCode=IN&videoCategoryId=17&key=";
+        break;
+      case "Learning":
+        categoryParams =
+          "part=snippet%2CcontentDetails%2Cstatistics&chart=mostPopular&maxResults=50&regionCode=IN&videoCategoryId=28&key=";
         break;
       default:
-        // Handle default case or additional categories
+        categoryParams =
+          "part=snippet%2CcontentDetails%2Cstatistics&chart=mostPopular&maxResults=50&regionCode=IN&key=";
         break;
     }
 
-    const apiUrl = `${BASE_API_URL}${categoryParams}`+process.env.REACT_APP_GOOGLE_API_KEY;
+    const apiUrl =
+      `${BASE_API_URL}${categoryParams}` + process.env.REACT_APP_GOOGLE_API_KEY;
 
     const data = await fetch(apiUrl);
     return data;
